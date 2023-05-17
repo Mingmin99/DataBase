@@ -42,14 +42,20 @@ public class BonusCalculation {
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery("SELECT EMPNO, ENAME, JOB, SAL, COMM FROM EMP");
 
+		int fetchSize = rs.getFetchSize();
+		System.out.println("Fetch Size: " + fetchSize);
+
 		// empInfo에 넣기
 		while (rs.next()) {
 			empInfo.add(new Emp(rs.getString("ENAME"), Integer.parseInt(rs.getString("EMPNO")), rs.getString("JOB"),
 					rs.getString("SAL"), rs.getString("COMM")));
 		}
 
-//	      customer테이블의 매니저 번호(ACCOUNT_MGR) 조회
+//		fetchsize 변경해주기 
 		stmt = conn.createStatement();
+		stmt.setFetchSize(10000);
+		
+//		customer테이블의 매니저 번호(ACCOUNT_MGR) 조회
 		rs = stmt.executeQuery("SELECT MGR_EMPNO FROM CUSTOMER");
 
 //	      MGR_EMPNO별로 관리하는 고객 수 count
