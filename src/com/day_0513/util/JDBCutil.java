@@ -1,5 +1,6 @@
 package com.day_0513.util;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -29,5 +30,15 @@ public class JDBCutil {
         }
         return conn;
     }
+
+	public static void closeConnection(Connection conn) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void closeStatement(CallableStatement cstmt) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
